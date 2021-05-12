@@ -1,0 +1,6 @@
+const express = require('express')
+const app = express()
+const path = require('path')
+app.use('/build', express.static(path.join(__dirname, '../build')))
+app.get('/', (req, res) => res.send('HELLO FROM EXPRESS'))
+app.listen(3000, () => console.log('running on port 3001'))

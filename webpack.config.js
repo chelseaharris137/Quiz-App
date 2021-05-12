@@ -2,17 +2,25 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
+  mode: process.env.NODE_ENV,
+  devtool: 'source-map',
   entry: './src/index.js',
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'index_bundle.js',
-    publicPath: '/'
+    path: path.resolve(__dirname, 'build'),
+    filename: 'bundle.js',
+    publicPath: '/build/'
   },
   module: {
     rules: [
       {
         test: /\.(js)$/,
-        use: 'babel-loader'
+        exclude: /(node_modules)/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env', '@babel/preset-react']
+          }
+        }
       },
       {
         test: /\.(sa|sc|c)ss$/,
@@ -27,9 +35,12 @@ module.exports = {
       }
     ]
   },
-  mode: 'development',
   devServer: {
-    historyApiFallback: true
+    historyApiFallback: true,
+    proxy: {
+      '/': 'http://localhost:3000'
+    },
+    publicPath: '/build'
   },
   plugins: [
     new HtmlWebpackPlugin({
