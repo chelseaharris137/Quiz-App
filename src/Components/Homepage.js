@@ -11,7 +11,7 @@ const Home = () => {
           <h1>World History Quiz</h1>
           <p className='home-para'>How&lsquo;s your history trivia? Take this easy quiz and see how well you do!</p>
           <Link to='/quiz'>
-            <button className='global-button'>START THE QUIZ</button>
+            <button className='global-button'> START THE QUIZ</button>
           </Link>
         </Col>
       </Row>
