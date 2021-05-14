@@ -1,7 +1,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-    <img src="readme-images/logo.png" alt="Logo" width="80" height="80">
+    <img src="readme-images/readme-logo.png" alt="Logo" width="80" height="80">
   <h3 align="center">Quiz App</h3>
   <p align="center">
     A desktop app that retrieves trivia questions from MongoDB and serves them to the client.
@@ -34,6 +34,7 @@
     npm run dev
    ```
 4. Open http://localhost:8080 to view it in the browser.
+
 
 <!-- USAGE EXAMPLES -->
 ## Usage

@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import Alert from 'react-bootstrap/Alert'
 import Results from './Results'
 import '../Sass/Questions.sass'
 
@@ -8,6 +9,7 @@ const Questions = ({ quizData }) => {
   const [answer, setAnswer] = useState(null)
   const [completed, setCompleted] = useState(false)
   const [sumbitted, setSubmitted] = useState(false)
+  const [showAlert, setShowAlert] = useState(false)
   //keep the submitted somehow and change background to red with it
 
   const option1 = quizData[count]['options'][0]['text']
@@ -20,8 +22,9 @@ const Questions = ({ quizData }) => {
       setCount(count + 1)
       setAnswer(null)
       setSubmitted(false)
+      setShowAlert(false)
     } else {
-      alert('please make a selection')
+      setShowAlert(true)
     }
   }
 
@@ -49,6 +52,11 @@ const Questions = ({ quizData }) => {
           </div>
           <div className='questions-answers'>
             <h5>{quizData[count]['question']}</h5>
+            {showAlert ? (
+              <Alert show={true} onClose={() => setShowAlert(false)} variant='danger' closeLabel='Close Alert' dismissible fade='false'>
+                Please make a selection!
+              </Alert>
+            ) : null}
             <ul>
               <li
                 style={
