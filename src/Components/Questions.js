@@ -1,3 +1,4 @@
+  
 import React, { useState } from 'react'
 import Alert from 'react-bootstrap/Alert'
 import Results from './Results'
@@ -8,9 +9,10 @@ const Questions = ({ quizData }) => {
   const [score, setScore] = useState(0)
   const [answer, setAnswer] = useState(null)
   const [completed, setCompleted] = useState(false)
-  const [sumbitted, setSubmitted] = useState(false)
+  const [sumbitted, setSubmitted] = useState(null)
   const [showAlert, setShowAlert] = useState(false)
-  //keep the submitted somehow and change background to red with it
+  //if the selected is wrong background red --> border correct green
+  //if the the answer is correct backgroud seleced in green
 
   const option1 = quizData[count]['options'][0]['text']
   const option2 = quizData[count]['options'][1]['text']
@@ -21,7 +23,7 @@ const Questions = ({ quizData }) => {
     if (answer !== null) {
       setCount(count + 1)
       setAnswer(null)
-      setSubmitted(false)
+      setSubmitted(null)
       setShowAlert(false)
     } else {
       setShowAlert(true)
@@ -32,7 +34,7 @@ const Questions = ({ quizData }) => {
     quizData[count]['options'].forEach((elem) => {
       if (elem.answer === true) {
         setAnswer(elem.text)
-        setSubmitted(true)
+        setSubmitted(selectedAnswer)
       }
     })
     //why isnt this incrementing???
@@ -58,10 +60,17 @@ const Questions = ({ quizData }) => {
               </Alert>
             ) : null}
             <ul>
+              {/* if option 1 is selected and is also the answer then that style
+              otherwise if option 1 is selected and not answer background red font fff
+              otherwise background transparent */}
               <li
                 style={
-                  option1 === answer
+                  option1 === answer && sumbitted === option1
                     ? { border: '1px solid green', backgroundColor: 'rgba(51, 170, 51, .1)' }
+                    : option1 !== answer && sumbitted === option1
+                    ? { backgroundColor: 'rgba(255, 0, 0, .3)' }
+                    : option1 === answer && sumbitted !== option1
+                    ? { boxShadow: '0 0 3px green inset' }
                     : { backgroundColor: 'transparent' }
                 }
               >
@@ -76,8 +85,12 @@ const Questions = ({ quizData }) => {
               </li>
               <li
                 style={
-                  option2 === answer
+                  option2 === answer && sumbitted === option2
                     ? { border: '1px solid green', backgroundColor: 'rgba(51, 170, 51, .1)' }
+                    : option2 !== answer && sumbitted === option2
+                    ? { backgroundColor: 'rgba(255, 0, 0, .3)' }
+                    : option2 === answer && sumbitted !== option2
+                    ? { boxShadow: '0 0 3px green inset' }
                     : { backgroundColor: 'transparent' }
                 }
               >
@@ -92,8 +105,12 @@ const Questions = ({ quizData }) => {
               </li>
               <li
                 style={
-                  option3 === answer
+                  option3 === answer && sumbitted === option3
                     ? { border: '1px solid green', backgroundColor: 'rgba(51, 170, 51, .1)' }
+                    : option3 !== answer && sumbitted === option3
+                    ? { backgroundColor: 'rgba(255, 0, 0, .3)' }
+                    : option3 === answer && sumbitted !== option3
+                    ? { boxShadow: '0 0 3px green inset' }
                     : { backgroundColor: 'transparent' }
                 }
               >
@@ -108,8 +125,12 @@ const Questions = ({ quizData }) => {
               </li>
               <li
                 style={
-                  option4 === answer
+                  option4 === answer && sumbitted === option4
                     ? { border: '1px solid green', backgroundColor: 'rgba(51, 170, 51, .1)' }
+                    : option4 !== answer && sumbitted === option4
+                    ? { backgroundColor: 'rgba(255, 0, 0, .3)' }
+                    : option4 === answer && sumbitted !== option4
+                    ? { boxShadow: '0 0 3px green inset' }
                     : { backgroundColor: 'transparent' }
                 }
               >
