@@ -1,4 +1,3 @@
-  
 import React, { useState } from 'react'
 import Alert from 'react-bootstrap/Alert'
 import Results from './Results'
@@ -11,8 +10,6 @@ const Questions = ({ quizData }) => {
   const [completed, setCompleted] = useState(false)
   const [sumbitted, setSubmitted] = useState(null)
   const [showAlert, setShowAlert] = useState(false)
-  //if the selected is wrong background red --> border correct green
-  //if the the answer is correct backgroud seleced in green
 
   const option1 = quizData[count]['options'][0]['text']
   const option2 = quizData[count]['options'][1]['text']
@@ -20,6 +17,9 @@ const Questions = ({ quizData }) => {
   const option4 = quizData[count]['options'][3]['text']
 
   const next = () => {
+    if (answer === sumbitted) {
+      setScore(score + 1)
+    }
     if (answer !== null) {
       setCount(count + 1)
       setAnswer(null)
@@ -37,10 +37,6 @@ const Questions = ({ quizData }) => {
         setSubmitted(selectedAnswer)
       }
     })
-    //why isnt this incrementing???
-    if (selectedAnswer === answer) {
-      setScore(score + 1)
-    }
   }
 
   return (
@@ -60,9 +56,6 @@ const Questions = ({ quizData }) => {
               </Alert>
             ) : null}
             <ul>
-              {/* if option 1 is selected and is also the answer then that style
-              otherwise if option 1 is selected and not answer background red font fff
-              otherwise background transparent */}
               <li
                 style={
                   option1 === answer && sumbitted === option1
