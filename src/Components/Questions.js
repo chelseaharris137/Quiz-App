@@ -7,16 +7,19 @@ const Questions = ({ quizData }) => {
   const [score, setScore] = useState(0)
   const [answer, setAnswer] = useState(null)
   const [completed, setCompleted] = useState(false)
+  const [sumbitted, setSubmitted] = useState(false)
+  //keep the submitted somehow and change background to red with it
 
   const option1 = quizData[count]['options'][0]['text']
   const option2 = quizData[count]['options'][1]['text']
   const option3 = quizData[count]['options'][2]['text']
   const option4 = quizData[count]['options'][3]['text']
-//if the count is 11 show a score page
+
   const next = () => {
     if (answer !== null) {
       setCount(count + 1)
       setAnswer(null)
+      setSubmitted(false)
     } else {
       alert('please make a selection')
     }
@@ -26,16 +29,16 @@ const Questions = ({ quizData }) => {
     quizData[count]['options'].forEach((elem) => {
       if (elem.answer === true) {
         setAnswer(elem.text)
+        setSubmitted(true)
       }
     })
+    //why isnt this incrementing???
     if (selectedAnswer === answer) {
       setScore(score + 1)
     }
   }
 
   return (
-    //use react rounter here
-    //but you only want to go to the result if quiz taken
     <div>
       {completed ? (
         <Results score={score} />
@@ -50,9 +53,9 @@ const Questions = ({ quizData }) => {
               <li
                 style={
                   option1 === answer
-                    ? { backgroundColor: 'green', opacity: '.4', color: '#000 !important' }
+                    ? { border: '1px solid green', backgroundColor: 'rgba(51, 170, 51, .1)' }
                     : { backgroundColor: 'transparent' }
-            }
+                }
               >
                 <button
                   className='option'
@@ -66,7 +69,7 @@ const Questions = ({ quizData }) => {
               <li
                 style={
                   option2 === answer
-                    ? { backgroundColor: 'green', opacity: '.4', color: '#000 !important' }
+                    ? { border: '1px solid green', backgroundColor: 'rgba(51, 170, 51, .1)' }
                     : { backgroundColor: 'transparent' }
                 }
               >
@@ -79,7 +82,13 @@ const Questions = ({ quizData }) => {
                   B. {option2}
                 </button>
               </li>
-              <li style={option3 === answer ? { backgroundColor: 'green', opacity: '.4' } : { backgroundColor: 'transparent' }}>
+              <li
+                style={
+                  option3 === answer
+                    ? { border: '1px solid green', backgroundColor: 'rgba(51, 170, 51, .1)' }
+                    : { backgroundColor: 'transparent' }
+                }
+              >
                 <button
                   className='option'
                   onClick={() => {
@@ -89,7 +98,13 @@ const Questions = ({ quizData }) => {
                   C. {option3}
                 </button>
               </li>
-              <li style={option4 === answer ? { backgroundColor: 'green', opacity: '.4' } : { backgroundColor: 'transparent' }}>
+              <li
+                style={
+                  option4 === answer
+                    ? { border: '1px solid green', backgroundColor: 'rgba(51, 170, 51, .1)' }
+                    : { backgroundColor: 'transparent' }
+                }
+              >
                 <button
                   className='option'
                   onClick={() => {
@@ -103,10 +118,10 @@ const Questions = ({ quizData }) => {
             {count === 9 ? (
               <div>
                 <button
-                  id='resultsBtn'
+                  id='nextBtn'
                   onClick={() => {
                     setCompleted(true)
-              }}
+                  }}
                 >
                   See Results
                 </button>
