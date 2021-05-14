@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch, useHistory } from 'react-router
 import { Container, Row, Col } from 'react-bootstrap'
 import Home from './Components/Homepage'
 import Quiz from './Components/Quiz'
+import Results from './Components/Results'
 import './Sass/App.sass'
 
 const App = () => {
@@ -17,6 +18,9 @@ const App = () => {
               </Route>
               <Route exact path='/quiz'>
                 <Quiz />
+              </Route>
+              <Route exact path='/results'>
+                <Results />
               </Route>
             </Switch>
           </Col>
