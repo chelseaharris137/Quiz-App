@@ -29,17 +29,27 @@
    ```sh
    npm install
    ```
-3. Run the app in the development mode.
+3. Create a `.env` file in the main directory
+4. Enter your username that I submitted to greenhouse in `.env`
+   ```JS
+   REACT_APP_MONGODB_USER_NAME='ENTER YOUR USERNAME'
+   ```
+5. Enter your password that I submitted to greenhouse in `.env`
+   ```JS
+   REACT_APP_MONGODB_PASSWORD='ENTER YOUR PASSWORD'
+   ```
+6. Run the app in the development mode.
    ```JS
     npm run dev
    ```
-4. Open http://localhost:8080 to view it in the browser.
+7. Open http://localhost:8080 to view it in the browser.
 
 
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-[INSERT SCREENSHOTS HERE]
+Demo:
+<img src="readme-images/quizapp-demo.gif">
 
 
 <!-- LICENSE -->
