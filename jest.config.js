@@ -1,6 +1,10 @@
 module.exports = {
-  collectCoverageFrom: ['src/**/*.{js,jsx,ts,tsx}'],
-  coveragePathIgnorePatterns: ['/.*.stories.[jt]sx?$', '/.*.test.[jt]sx?$', '/node_modules'],
   preset: 'ts-jest',
-  testEnvironment: 'node'
+  transform: {
+    '^.+\\.(ts|tsx)?$': 'ts-jest',
+    '^.+\\.(js|jsx)$': 'babel-jest'
+  },
+  moduleNameMapper: {
+    '^.+\\.(css|less|sass)$': 'identity-obj-proxy'
+  }
 }

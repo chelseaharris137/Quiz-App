@@ -68,6 +68,7 @@ const Questions = ({ quizData }) => {
                 }
               >
                 <button
+                  alt='submit button'
                   className='option'
                   onClick={() => {
                     selection(option1)
@@ -88,6 +89,7 @@ const Questions = ({ quizData }) => {
                 }
               >
                 <button
+                  alt='submit button'
                   className='option'
                   onClick={() => {
                     selection(option2)
@@ -108,6 +110,7 @@ const Questions = ({ quizData }) => {
                 }
               >
                 <button
+                  alt='submit button'
                   className='option'
                   onClick={() => {
                     selection(option3)
@@ -128,6 +131,7 @@ const Questions = ({ quizData }) => {
                 }
               >
                 <button
+                  alt='submit button'
                   className='option'
                   onClick={() => {
                     selection(option4)

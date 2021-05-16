@@ -4,9 +4,12 @@ const mongoose = require('mongoose')
 const path = require('path')
 const routes = require('./routes/routes.js')
 const cors = require('cors')
+require('dotenv').config()
+const userName = process.env.REACT_APP_MONGODB_USER_NAME
+const password = process.env.REACT_APP_MONGODB_PASSWORD
 
 mongoose
-  .connect('mongodb+srv://chelseaharris137:3uvHM7zB8w8ZoKFi@cluster0.kc5za.mongodb.net/QuizApp?retryWrites=true&w=majorit', {
+  .connect(`mongodb+srv://${userName}:${password}@cluster0.kc5za.mongodb.net/QuizApp?retryWrites=true&w=majorit`, {
     useNewUrlParser: true,
     useUnifiedTopology: true
   })
