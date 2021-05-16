@@ -142,6 +142,9 @@ const Questions = ({ quizData }) => {
                 <button
                   id='nextBtn'
                   onClick={() => {
+                    if (answer === sumbitted) {
+                      setScore(score + 1)
+                    }
                     setCompleted(true)
                   }}
                 >
