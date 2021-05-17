@@ -1,11 +1,26 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
+import Enzyme from 'enzyme'
+import Adapter from '@wojtekmaj/enzyme-adapter-react-17'
+import { shallow } from 'enzyme'
 import App from '../src/App'
+import Home from '../src/Components/Homepage'
 
-test('renders without crashing', () => {
-  const div = document.createElement('div')
-  ReactDOM.render(<App />, div)
-  expect(div.querySelector('h1').textContent).toBe('World History Quiz')
-  expect(div.querySelector('.home-para').textContent).toBe('How‘s your history trivia? Take this easy quiz and see how well you do!')
-  expect(div.querySelector('#home-btn').textContent).toBe('START THE QUIZ')
+Enzyme.configure({ adapter: new Adapter() })
+
+it('renders without crashing', () => {
+  shallow(<App />)
+})
+
+it('renders homepage content', () => {
+  const wrapper = shallow(<Home />)
+  const header = <h1>World History Quiz</h1>
+  const para = <p className='home-para'>How&lsquo;s your history trivia? Take this easy quiz and see how well you do!</p>
+  const button = (
+    <button className='global-button' id='home-btn'>
+      START THE QUIZ
+    </button>
+  )
+  expect(wrapper.contains(header)).toEqual(true)
+  expect(wrapper.contains(para)).toEqual(true)
+  expect(wrapper.contains(header)).toEqual(true)
 })

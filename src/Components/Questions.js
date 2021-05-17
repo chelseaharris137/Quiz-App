@@ -68,7 +68,6 @@ const Questions = ({ quizData }) => {
                 }
               >
                 <button
-                  alt='submit button'
                   className='option'
                   onClick={() => {
                     selection(option1)
